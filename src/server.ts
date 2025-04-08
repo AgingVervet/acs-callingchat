@@ -10,12 +10,12 @@ const createNewChatThread = async (chatClient: ChatClient, participants: ChatPar
     { participants }
   );
   if (chatThreadResponse.invalidParticipants && chatThreadResponse.invalidParticipants.length > 0) {
-    throw 'Server could not add participants to the chat thread';
+    throw new Error('Server could not add participants to the chat thread');
   }
 
   const chatThread = chatThreadResponse.chatThread;
   if (!chatThread || !chatThread.id) {
-    throw 'Server could not create chat thread';
+    throw new Error('Server could not create chat thread');
   }
 
   return chatThread.id;
